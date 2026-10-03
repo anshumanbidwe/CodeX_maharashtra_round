@@ -312,11 +312,18 @@
         if (show) showDetails(show);
       }
       if (action === 'quantity-minus' && ticketQuantity > 1) {
-        ticketQuantity--;
-        document.querySelector('#quantity').textContent = ticketQuantity;
-        document.querySelector('#total').textContent = `₹${(activeShow.price * ticketQuantity).toLocaleString('en-IN')}`;
-      }
-      if (action === 'quantity-plus' && ticketQuantity < 4 && ticketQuantity < availableSeats(activeShow)) {
-        ticketQuantity++;
-        document.querySelector('#quantity').textContent = ticketQuantity;
-        document.querySelector('#t
+    ticketQuantity--;
+    document.querySelector('#quantity').textContent = ticketQuantity;
+    document.querySelector('#total').textContent =
+        `${(activeShow.price * ticketQuantity).toLocaleString('en-IN')}`;
+}
+
+if (action === 'quantity-plus' && ticketQuantity < 4 && ticketQuantity < availableSeats(activeShow)) {
+    ticketQuantity++;
+    document.querySelector('#quantity').textContent = ticketQuantity;
+    document.querySelector('#total').textContent =
+        `${(activeShow.price * ticketQuantity).toLocaleString('en-IN')}`;
+}
+});
+
+renderPage();
