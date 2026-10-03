@@ -1,10 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
+const verificationRoutes = require("./routes/verification");
 
 const app = express();
 
 app.use(express.json());
+app.use("/api/verify", verificationRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
@@ -14,13 +16,7 @@ mongoose.connect(process.env.MONGO_URI)
         console.log("MongoDB connection failed:", error);
     });
 
-    mongoose.connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("MongoDB connected successfully");
-  })
-  .catch((error) => {
-    console.error("MongoDB connection failed:", error.message);
-  });
+    
 
 app.get("/", (req, res) => {
     res.json({
